@@ -2,14 +2,15 @@ package com.java;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-class Product {
+class Electronics_category {
     private String name;
     private double price;
     private String category;
     private String grade;
 
-    public Product(String name, double price, String category, String grade) {
+    public Electronics_category(String name, double price, String category, String grade) {
         this.name = name;
         this.price = price;
         this.category = category;
@@ -33,9 +34,8 @@ class Product {
     }
 }
 
- class Main {
+ class Electronic {
     public static void main(String[] args) {
-        // Sample list of products
         List<Product> products = new ArrayList<>();
         products.add(new Product("Product1", 1200, "Electronics", "A+"));
         products.add(new Product("Product2", 800, "Clothing", "B"));
@@ -43,20 +43,15 @@ class Product {
         products.add(new Product("Product4", 900, "Home Decor", "C"));
         products.add(new Product("Product5", 1100, "Electronics", "B+"));
 
-        // Price threshold for filtering
-        double priceThreshold = 1000;
+        List<Product> electronicsProducts = products.stream()
+                .filter(product -> product.getCategory().equals("Electronics"))
+                .collect(Collectors.toList());
 
-        // Use Java streams to filter products with price > 1000
-        List<Product> filteredProducts = products.stream()
-                .filter(product -> product.getPrice() > priceThreshold)
-                .toList();
-
-        // Display the filtered products
-        for (Product product : filteredProducts) {
-            System.out.println("Name: " + product.getName() +
-                               ", Price: " + product.getPrice() +
-                               ", Category: " + product.getCategory() +
-                               ", Grade: " + product.getGrade());
+        for (Product Electronics_category : electronicsProducts) {
+            System.out.println("Name: " + Electronics_category.getName() +
+                    ", Price: " + Electronics_category.getPrice() +
+                    ", Category: " + Electronics_category.getCategory() +
+                    ", Grade: " + Electronics_category.getGrade());
         }
     }
 }
